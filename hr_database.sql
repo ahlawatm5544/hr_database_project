@@ -1,8 +1,7 @@
--- Create HR Database
-CREATE DATABASE hr;
-USE hr;
 
--- Create Employees Table
+CREATE DATABASE hr;
+USE hr; 
+
 CREATE TABLE employees (
     employee_id INT PRIMARY KEY,
     first_name VARCHAR(50),
@@ -17,7 +16,6 @@ CREATE TABLE employees (
     department_id INT
 );
 
--- Create Jobs Table
 CREATE TABLE jobs (
     job_id VARCHAR(10) PRIMARY KEY,
     job_title VARCHAR(100),
@@ -25,14 +23,12 @@ CREATE TABLE jobs (
     max_salary DECIMAL(10,2)
 );
 
--- Create Departments Table
 CREATE TABLE departments (
     department_id INT PRIMARY KEY,
     department_name VARCHAR(100),
     location_id INT
 );
 
--- Create Job History Table
 CREATE TABLE job_history (
     employee_id INT,
     start_date DATE,
@@ -45,7 +41,6 @@ CREATE TABLE job_history (
     FOREIGN KEY (department_id) REFERENCES departments(department_id)
 );
 
--- Insert sample data
 INSERT INTO jobs (job_id, job_title, min_salary, max_salary) VALUES
 ('J001', 'Software Engineer', 5000, 15000),
 ('J002', 'Manager', 7000, 20000),
@@ -60,8 +55,6 @@ INSERT INTO employees (employee_id, first_name, last_name, email, phone_number, 
 (101, 'Alice', 'Johnson', 'alice.johnson@example.com', '1234567890', '2018-06-15', 'J001', 8000, NULL, 201, 1),
 (102, 'Bob', 'Smith', 'bob.smith@example.com', '1234567891', '2016-08-20', 'J002', 12000, NULL, NULL, 3),
 (103, 'Charlie', 'Brown', 'charlie.brown@example.com', '1234567892', '2019-03-10', 'J003', 5000, 0.10, 102, 2);
-
--- Fundamentals of Structured Query Language - 1
 
 -- 1. Retrieve all details of employees.
 SELECT * FROM employees;
@@ -78,7 +71,6 @@ SELECT COUNT(*) AS total_employees FROM employees;
 -- 5. Retrieve the employees who were hired after January 1, 2015.
 SELECT * FROM employees WHERE hire_date > '2015-01-01';
 
--- Fundamentals of Structured Query Language - 2
 
 -- 6. List all employees who have a salary greater than 5000.
 SELECT * FROM employees WHERE salary > 5000;
@@ -95,8 +87,6 @@ SELECT * FROM employees WHERE commission_pct IS NULL;
 -- 10. Retrieve the top 5 highest-paid employees.
 SELECT * FROM employees ORDER BY salary DESC LIMIT 5;
 
--- SQL Functions
-
 -- 11. Find the average salary of all employees.
 SELECT AVG(salary) AS average_salary FROM employees;
 
@@ -111,8 +101,6 @@ SELECT first_name, last_name, YEAR(hire_date) AS hire_year FROM employees;
 
 -- 15. Retrieve the minimum and maximum salary for each job title.
 SELECT job_id, MIN(salary) AS min_salary, MAX(salary) AS max_salary FROM employees GROUP BY job_id;
-
--- SQL Tables, Joins
 
 -- 16. Retrieve the employee names along with their department names.
 SELECT e.first_name, e.last_name, d.department_name FROM employees e 
